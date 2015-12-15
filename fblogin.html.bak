@@ -1,0 +1,117 @@
+<?php 
+  session_start();
+  include("dbconfig.php");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Please Login Facebook</title>
+<meta charset="UTF-8">
+</head>
+<body>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    window.fbAsyncInit = function() {  
+        // initialize facebook login
+        FB.init({
+            appId      : '270166026515153',
+            status     : true,
+            cookie     : true,  // enable cookies to allow the server to access the session
+            xfbml      : true,  // parse social plugins on this page
+            version    : 'v2.1' // use version 2.1
+        });
+
+        // Get login status
+        FB.getLoginStatus(function(response) {
+            // call callback function
+            statusChangeCallback(response);
+        });
+    };
+
+    // Load the SDK asynchronously
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/zh_TW/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+    function statusChangeCallback(response) 
+    {
+        // Check login status
+        if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+            document.getElementById('status').innerHTML = '請稍等...';
+            hideFBlogin();
+
+            // call vote helper here
+            voteHandler(response);
+
+        } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = '請先登入Facebook才能投票喔~';
+        } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById('status').innerHTML = '請先登入Facebook才能投票喔~';
+        }
+    }
+    function voteHandler(loginResponse) 
+    {
+
+        var accessToken = loginResponse.authResponse.accessToken;
+        var userID = loginResponse.authResponse.userID;
+        console.log(loginResponse.authResponse);
+
+        console.log('Voting handler...')
+
+        // FB.api('/me', function(response) {
+        //     console.log('Successful login for: ' + response.name);
+
+        //     //將使用者FB ID和FB NAME存入資料庫
+        //     sent_data = {'fb_name' : response.name, 'fb_id' : response.id};
+
+        //     $.post('vote.php', sent_data, function(response_data) {
+        //         alert(response_data);
+        //         document.location.href="video_gallery.php";
+        //     });
+        // });
+    } 
+
+    // ================== seperator ================
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    }
+
+    function hideFBlogin() {
+        var fb_login = document.getElementById('fb_login');
+        fb_login.style.display = 'none';
+    }
+
+</script>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<div id="fb_login">
+  <fb:login-button scope="public_profile" onlogin="checkLoginState();" data-auto-logout-link="true">
+  </fb:login-button>
+</div>
+<div id="status">
+</div>
+
+
+</body>
+</html>

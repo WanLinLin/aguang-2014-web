@@ -1,0 +1,60 @@
+<?php
+	session_start();
+  include("dbconfig.php");
+  date_default_timezone_set('Asia/Taipei');
+  //echo "vote.php : ".$_SESSION['vote_number'];
+
+  #$_SESSION['fb_id'] = $_POST['fb_id'];
+  #$_SESSION['fb_name'] = $_POST['fb_name']; 
+
+	#echo $_POST['fb_name'].'-'.$_POST['fb_id'];
+	$index = 0;
+	$vote_index = 0;
+
+	//check 資料庫中有沒有使用者資料
+	$mId = $db->query("SELECT `mId` FROM `member`");
+	while ($r = $mId->fetch(PDO::FETCH_ASSOC)) {
+		if ($_POST['fb_id'] == $r['mId']) {
+			$index = 1;	
+		}
+	}
+
+
+	if ($index != 1){
+		//資料庫中無使用者資料, 將使用者資料插入資料庫
+		//echo "No,phptest.php,".$_SESSION['vote_number'];
+		$db->exec("INSERT INTO `member` (`mId`, `mName`) values ('".$_POST['fb_id']."', '".$_POST['fb_name']."')");
+	}
+
+	$today_start_time = date("Y-m-d 00:00:00");
+	$today_end_time = date("Y-m-d 23:59:59");
+	$datetime = date("Y-m-d H:i:s");
+
+	//check今天是否投過票
+	$row = $db->query("SELECT `voteTime` FROM `vote` WHERE `mId` = {$_POST['fb_id']}");
+	while ($r = $row->fetch(PDO::FETCH_ASSOC)){
+		//echo $r['voteTime'];
+		$phpdate = strtotime( $r['voteTime'] );
+		$mysqldate = date( 'Y-m-d H:i:s', $phpdate );
+		if ($mysqldate >= $today_start_time && $mysqldate <= $today_end_time) {
+			$vote_index = 1;
+		}
+	}
+
+	//今日已投過票
+	if ($vote_index == 1) {
+		echo "您今天投過票了!請明天再來投票~";
+	}
+	//今日未投過票
+	else {
+		//update投票票數+1
+		$db->exec("UPDATE `video` SET `vVotes` = `vVotes` + 1 WHERE `vId` = {$_SESSION['vote_number']} ");
+		
+		//insert vote record
+		$db->exec("INSERT INTO `vote` values ({$_POST['fb_id']}, {$_SESSION['vote_number']}, '".$datetime."' )");
+
+		echo "投票成功!";
+	}
+
+	session_destroy();
+?>

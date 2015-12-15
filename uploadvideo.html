@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>阿廣告白吧！告別黑白吧！ - 上傳影片</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/my-navbar-2.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+        <link href="res/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <link href='img/pagelogo.ico' rel='icon' type='image/x-icon'/>
+        <link rel="SHORTCUT ICON" href="img/pagelogo.ico">
+
+        <style>
+          .btn_wrap {
+            padding-top: 3%;
+            width: 100%;
+          }
+          .input_wrap {
+          }
+          .input-group {
+            padding-top: 16px;
+          }
+          .input-group-addon-warning {
+            background: #E82A1C;
+            color: white;
+          }
+          #i_vdesc {
+            height: 160px;
+          }
+          #submit_btn {
+            width: 100%;
+          }
+        </style>
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '270166026515153',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/zh_tw/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container" id="navbar_container">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <a class="navbar-brand" href="/aguang2014" style="padding: 0px;"><img class="img-responsive" src="img/logo.png" alt="阿廣告白吧！告別黑白吧！"></a>
+        <div
+          class="fb-like navbar-text navbar-left"
+          data-send="true"
+          data-layout="button_count" 
+          data-action="like" 
+          data-show-faces="false" 
+          data-share="true"
+          data-href="http://www.aguangnsysu.com/aguang2014/">
+        </div>
+
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="takepartin.html"><i class="fa fa-pencil fa-fw"></i> 報名參加</a></li>
+            <li><a href="news.php"><i class="fa fa-home fa-fw"></i> 最新消息</a></li>
+            <li><a href="howtotakepartin.html"><i class="fa fa-database fa-fw"></i> 比賽流程</a></li>
+            <li><a href="video_gallery.html"><i class="fa fa-video-camera fa-fw"></i> 影音藝廊</a></li>
+            <li><a href="https://www.facebook.com/pages/%E7%AC%AC%E4%BA%94%E5%B1%86%E9%98%BF%E5%BB%A3%E5%91%8A%E7%99%BD%E5%90%A7-%E5%89%B5%E6%84%8F%E5%BB%A3%E5%91%8A%E7%AB%B6%E8%B3%BD/847470911954286" target="_blank"><i class="fa fa-thumbs-o-up fa-fw"></i>臉書粉專</a></li>
+            <li><a href="http://www.rainbowpaint.com.tw/index.aspx" style="padding: 0 10px;" target="_blank"><img class="img-responsive" src="img/rainbow_tr_sm.png" alt="Rainbow" ></a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <div id="wrap">
+      <div class="container goto_container">
+        <div class="row">
+
+          <!-- Form Body -->
+          <div class="col-md-offset-2 col-md-8 text_fadein">
+
+            <h1 class="page-header">上傳影片</h1>            
+
+            <div class="input_wrap">
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon">隊伍名稱</span>
+                <input type="text" class="form-control" id="i_vteam" placeholder="請輸入隊伍名稱">
+              </div>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon">影片標題</span>
+                <input type="text" class="form-control" id="i_vtitle" placeholder="請輸入影片標題">
+              </div>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon">影片說明</span>
+                <textarea type="text" class="form-control" id="i_vdesc" placeholder="請輸入影片說明"></textarea>
+              </div>
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon input-group-addon-warning">影片網址</span>
+                <input type="url" class="form-control" id="i_vurl" placeholder="請輸入影片所在空間網址">
+              </div>
+            </div>
+            <div class="btn_wrap">
+              <div class="btn-group btn-group-lg" style="display:block;">
+                <div id="submit_btn" type="button" class="btn btn_green_border">
+                  SUBMIT
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          <!-- Form Body End -->
+
+        </div>
+      </div>
+    </div> <!-- #wrap -->
+
+    <footer id="footer" class="jumbotron">
+      <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div>
+                <span>主辦單位:</span>
+                <span><img src="img/nsysu.png" alt="nsysu-bm-ad"> 國立中山大學企業管理學系系學會廣告行銷組</span>
+                <span><img src="img/nsysu.png" alt="nsysu-bm"> 國立中山大學企業管理學系</span>
+              </div>
+              <div>
+                <span>聯絡我們: <small>《服務時間:上午九點至晚上九點》</small></span>
+                <span><i class="fa fa-fw fa-phone"></i> 黃愉庭/0933105235</span>
+                <span><i class="fa fa-fw fa-phone"></i> 黃怡婷/0987840438</span>
+                <span><i class="fa fa-fw fa-phone"></i> 黃煜翔/0932733029</span>
+                <span><i class="fa fa-fw fa-envelope"></i> aguang106107@gmail.com</span>
+              </div>
+
+            </div>
+          </div>
+      </div>
+    </footer> 
+
+    
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/bootstrap-autohidingnavbar/dist/jquery.bootstrap-autohidingnavbar.min.js"></script>
+
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+
+          var sendFormToGoogleForm = function() {
+
+            var con = confirm("確定要送出嗎？");
+            if (con == false) {
+              return 1;
+            }
+
+            console.info("Sending data to google...");
+
+            // Get data
+            vteam = document.getElementById('i_vteam').value;
+            vtitle = document.getElementById('i_vtitle').value;
+            vdesc = document.getElementById('i_vdesc').value;
+            vurl = document.getElementById('i_vurl').value;
+
+            console.log(vteam, vtitle, vdesc, vurl);
+
+            // AJAX 
+            $.ajax({
+                url: "https://docs.google.com/forms/d/1cCtkdHf141QrhR5FAs0TtxnLg8RBkLiDEqKwufozegY/formResponse",
+                data: {
+                  // v title
+                  "entry.1673525436" : vtitle,
+                  // team name
+                  "entry.440760098" : vteam,
+                  // v description
+                  "entry.1147617656": vdesc,
+                  // v url
+                  "entry.1619202704": vurl
+                },
+                type: "POST",
+                dataType: "xml",
+                statusCode: {
+                },
+                complete: function(){
+                  console.info("您的資料已經傳送");
+                  alert("您的資料已經傳送");
+                  window.location.href = "uploadvideo.html";
+                }
+            });
+
+          };
+
+          $(document).ready(function(){
+
+            // Autohiding navbar
+            $(".navbar-fixed-top").autoHidingNavbar({});
+
+            $("#f_submit_btn").click(function(){
+              dataValidate($("#f_wrapper"));
+              sendFormToGoogleForm();
+            });
+
+            // bind event
+            $("#submit_btn").click(function() {
+              sendFormToGoogleForm();
+            });
+
+          });
+
+
+
+        </script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
