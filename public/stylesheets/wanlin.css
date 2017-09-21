@@ -1,0 +1,27 @@
+.cover-img {
+	padding-bottom: 25px;
+	max-height: 680px;
+}
+.carousel-pic {
+	max-width: 750px;
+}
+
+.new_html_code {
+  width:150px;
+  height:100px;
+  min-width:150px;
+  min-height:100px;
+  max-width:200px;
+  max-height:100px;
+  overflow:hidden;
+  display:block;
+  border:1px solid red;
+}
+.carousel-nav {
+  font-family: 微軟正黑體;
+  font-size: 19px;
+}
+.carousel-text {
+  font-family: 微軟正黑體;
+  font-size: 15px;
+}
